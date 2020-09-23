@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ public class IntroActivity extends AppCompatActivity {
     ImageView logo, img;
     LottieAnimationView mLottieAnimationView;
     TextView title;
+    Animation anim;
 
     private static final int NUM_PAGES = 3;
     private ViewPager mViewPager;
@@ -35,9 +38,14 @@ public class IntroActivity extends AppCompatActivity {
         mLottieAnimationView = findViewById(R.id.lottie);
         title = findViewById(R.id.title);
 
+
+
         mViewPager = findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
+
+        anim = AnimationUtils.loadAnimation(this,R.anim.fade_in_anim);
+        mViewPager.setAnimation(anim);
 
         img.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
         logo.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
